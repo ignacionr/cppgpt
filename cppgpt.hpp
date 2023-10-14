@@ -18,7 +18,7 @@ namespace ignacionr
         cppgpt(const std::string &api_key) : api_key(api_key) {}
 
         // Function to send a message to GPT and receive the reply
-        json sendMessage(std::string_view message, std::string_view role)
+        json sendMessage(std::string_view message, std::string_view role, float temperature = 0.25)
         {
             // Append the new message to the conversation history
             conversation.push_back({{"role", role}, {"content", message}});
@@ -27,7 +27,7 @@ namespace ignacionr
             json payload = {
                 {"model", "gpt-4"},
                 {"messages", conversation},
-                {"temperature", 0.7}};
+                {"temperature", temperature}};
 
             // Send the API request
             auto r = cpr::Post(
