@@ -18,7 +18,7 @@ namespace ignacionr
         cppgpt(const std::string &api_key) : api_key(api_key) {}
 
         // Function to send a message to GPT and receive the reply
-        json sendMessage(std::string_view message, std::string_view role, std::string_view model = "gpt-3.5-turbo", float temperature = 0.25)
+        json sendMessage(std::string_view message, std::string_view role = "user", std::string_view model = "gpt-3.5-turbo", float temperature = 0.25)
         {
             // Append the new message to the conversation history
             conversation.push_back({{"role", role}, {"content", message}});
@@ -43,6 +43,11 @@ namespace ignacionr
             conversation.push_back({{"role", "assistant"}, {"content", gpt_reply}});
 
             return response;
+        }
+
+        void clear()
+        {
+            conversation.clear();
         }
     };
 }
