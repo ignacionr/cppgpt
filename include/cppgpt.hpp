@@ -11,7 +11,9 @@ namespace ignacionr
     class cppgpt
     {
     public:
-        cppgpt(const std::string &api_key, const std::string &base_url = "https://api.openai.com/v1/") : api_key_(api_key), base_url_{base_url} {}
+        static constexpr auto open_ai_base = "https://api.openai.com/v1/";
+        static constexpr auto  groq_base = "https://api.groq.com/openai/v1";
+        cppgpt(const std::string &api_key, const std::string &base_url) : api_key_(api_key), base_url_{base_url} {}
 
         void add_instructions(std::string_view instructions, std::string_view role = "system")
         {

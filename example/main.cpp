@@ -14,7 +14,7 @@ int main()
     std::string api_key = env_api_key;
 
     // Initialize cppgpt with the API key from the environment variable
-    ignacionr::cppgpt myGpt(api_key);
+    ignacionr::cppgpt myGpt(api_key, ignacionr::cppgpt::open_ai_base);
 
     // Send a message and receive a reply
     auto response = myGpt.sendMessage("Hello, how are you?", "user");

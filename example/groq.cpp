@@ -17,7 +17,7 @@ int main()
     {
 
         // Initialize cppgpt with the API key from the environment variable
-        ignacionr::cppgpt myGpt(api_key, "https://api.groq.com/openai/v1");
+        ignacionr::cppgpt myGpt(api_key, ignacionr::cppgpt::groq_base);
 
         // Send a message and receive a reply
         response = myGpt.sendMessage("Hello, how are you?", "user", "llama3-70b-8192");
