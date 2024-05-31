@@ -21,8 +21,10 @@ FetchContent_Declare(nlohmann_json URL https://github.com/nlohmann/json/releases
 FetchContent_MakeAvailable(nlohmann_json)
 endif()
 
-# Executable
+# Executables
 add_executable(cppgpt_example main.cpp)
+add_executable(cppgroq_example groq.cpp)
 
 # Link libraries
 target_link_libraries(cppgpt_example PRIVATE cpr::cpr nlohmann_json::nlohmann_json)
+target_link_libraries(cppgroq_example PRIVATE cpr::cpr nlohmann_json::nlohmann_json)
