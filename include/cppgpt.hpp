@@ -23,7 +23,6 @@ namespace ignacionr
         // Function to send a message to GPT and receive the reply
         json sendMessage(std::string_view message, std::string_view role = "user", std::string_view model = "gpt-3.5-turbo", float temperature = 0.25)
         {
-            std::cerr << "sendMessage: " << message << " with model " << model << std::endl;
             // Append the new message to the conversation history
             conversation.push_back({{"role", role}, {"content", message}});
 
@@ -35,7 +34,6 @@ namespace ignacionr
 
             // Send the API request
             auto url = cpr::Url{base_url_ + "/chat/completions"};
-            std::cerr << "The URL is " << url << std::endl;
             auto r = cpr::Post(
                 url,
                 cpr::Header{{"Authorization", "Bearer " + api_key_}, {"Content-Type", "application/json"}},
@@ -45,7 +43,6 @@ namespace ignacionr
                 throw std::runtime_error("Error: " + r.text + " (" + std::to_string(r.status_code) + ")");
 
             // Parse the API response
-            std::cerr << "The response is " << r.text << " (" << r.text.size() << " bytes)" << std::endl;
             auto response = json::parse(r.text);
             auto gpt_reply = response["choices"][0]["message"]["content"];
 
