@@ -21,6 +21,7 @@ int main()
     ignacionr::cppollama ai("http://host.docker.internal:11434");
     #endif
 
+    // ignacionr::cppgpt myGpt(api_key, ignacionr::cppgpt::open_ai_base);
 
     // Send a message and receive a reply
     auto response = ai.sendMessage("Hello, how are you?", "user");
