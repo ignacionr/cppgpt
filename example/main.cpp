@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstdlib> // for getenv
 #include "../include/cppgpt.hpp"
+#include "../include/cppollama.hpp"
 
 int main()
 {
+    #ifdef CHATGPT
     // Read API key from environment variable
     const char *env_api_key = std::getenv("OPENAI_KEY");
     if (env_api_key == nullptr)
@@ -12,12 +14,16 @@ int main()
         return 1;
     }
     std::string api_key = env_api_key;
-
     // Initialize cppgpt with the API key from the environment variable
-    ignacionr::cppgpt myGpt(api_key);
+    ignacionr::cppgpt ai(api_key);
+    #else
+    // Initialize cppgpt with the local Ollama instance URL
+    ignacionr::cppollama ai("http://host.docker.internal:11434");
+    #endif
+
 
     // Send a message and receive a reply
-    auto response = myGpt.sendMessage("Hello, how are you?", "user");
+    auto response = ai.sendMessage("Hello, how are you?", "user");
 
     try
     {
